@@ -1,12 +1,15 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
-import Image from "next/image";
+import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
+import { useNewAccount } from "@/features/accounts/hooks/use-new-account";
 
 export default function Home() {
+  const { onOpen } = useNewAccount();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <UserButton />
-      This is an authenticated route.
+    <main className="flex  flex-col items-center p-24">
+      <Button onClick={onOpen}>Create Account</Button>
     </main>
   );
 }

@@ -15,6 +15,8 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { QueryProviders } from "@/providers/query-provider";
+import SheetProvider from "@/providers/sheet-provider";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,7 +25,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <QueryProviders>
+            <SheetProvider />
+            {children}
+          </QueryProviders>
+        </body>
       </html>
     </ClerkProvider>
   );
